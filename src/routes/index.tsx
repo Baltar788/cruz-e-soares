@@ -1,30 +1,89 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ArrowDownRight, ArrowRight, BriefcaseBusiness, Check, ChevronRight,
-  Instagram, Landmark, Mail, MapPin, Menu, MessageCircle, Scale,
-  ShieldCheck, Tractor, X,
+  ArrowDownRight,
+  ArrowRight,
+  BriefcaseBusiness,
+  Check,
+  ChevronRight,
+  Instagram,
+  Landmark,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Scale,
+  ShieldCheck,
+  Tractor,
+  X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Index });
 
-const whatsapp = "https://wa.me/5512991091341?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta.";
+const whatsapp = `https://wa.me/551231996132?text=${encodeURIComponent("Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta. Quais dias e horários estão disponíveis?")}`;
+const maps =
+  "https://www.google.com/maps/search/?api=1&query=Av.+Bernardino+de+Campos%2C+Centro%2C+Lorena+-+SP%2C+12602-610%2C+Brasil";
 
 const areas = [
-  { icon: Scale, number: "01", title: "Direito Civil", text: "Contratos, responsabilidade civil, família, sucessões e soluções seguras para conflitos do cotidiano." },
-  { icon: Tractor, number: "02", title: "Agronegócio", text: "Assessoria estratégica para produtores rurais, contratos agrários, crédito rural e proteção patrimonial." },
-  { icon: ShieldCheck, number: "03", title: "Direito Previdenciário", text: "Planejamento, concessão e revisão de benefícios do INSS, com análise individual e acompanhamento próximo." },
-  { icon: BriefcaseBusiness, number: "04", title: "Direito Trabalhista", text: "Defesa dos direitos de trabalhadores e consultoria preventiva para relações empresariais mais seguras." },
+  {
+    icon: Scale,
+    number: "01",
+    title: "Direito Civil",
+    text: "Contratos, responsabilidade civil, família, sucessões e soluções seguras para conflitos do cotidiano.",
+  },
+  {
+    icon: Tractor,
+    number: "02",
+    title: "Agronegócio",
+    text: "Assessoria estratégica para produtores rurais, contratos agrários, crédito rural e proteção patrimonial.",
+  },
+  {
+    icon: ShieldCheck,
+    number: "03",
+    title: "Direito Previdenciário",
+    text: "Planejamento, concessão e revisão de benefícios do INSS, com análise individual e acompanhamento próximo.",
+  },
+  {
+    icon: BriefcaseBusiness,
+    number: "04",
+    title: "Direito Trabalhista",
+    text: "Defesa dos direitos de trabalhadores e consultoria preventiva para relações empresariais mais seguras.",
+  },
 ];
 
 const professionals = [
-  { name: "Gustavo Cruz", role: "Advogado", image: "/foto-1.jpeg", text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade." },
-  { name: "Dra. Soares", role: "Advogada", image: "/foto-2.jpeg", text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas." },
+  {
+    name: "Dr. Gustavo",
+    role: "Advogado",
+    image: "/images/gustavo-800.webp",
+    text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade.",
+  },
+  {
+    name: "Dra. Denise",
+    role: "Advogada",
+    image: "/images/denise-800.webp",
+    text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
+  },
+  {
+    name: "Dr. Renan",
+    role: "Advogado",
+    image: "/images/renan-v2-800.webp",
+    photoClass: "person-photo-renan",
+    text: "Compromisso, atenção e atuação responsável na busca por soluções jurídicas seguras e eficientes.",
+  },
+  {
+    name: "Dr. Rafael",
+    role: "Advogado",
+    image: "/images/rafael-800.webp",
+    text: "Atuação cuidadosa, comunicação transparente e dedicação na construção de soluções jurídicas eficazes.",
+  },
+  { name: "Dr. João", role: "Estagiário", image: "/images/bape-v2-800.webp", text: "" },
 ];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookies, setCookies] = useState(false);
+  const [activeArea, setActiveArea] = useState<number | null>(0);
 
   useEffect(() => setCookies(!localStorage.getItem("cookiesAceitos")), []);
 
@@ -43,13 +102,26 @@ function Index() {
         <a className="header-cta" href={whatsapp} target="_blank" rel="noreferrer">
           Agendar consulta <ArrowDownRight size={17} />
         </a>
-        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu" aria-expanded={menuOpen}>
+        <button
+          className="menu-button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menu"
+          aria-expanded={menuOpen}
+        >
           {menuOpen ? <X /> : <Menu />}
         </button>
         {menuOpen && (
           <nav className="mobile-nav">
-            {[['escritorio','O escritório'],['atuacao','Atuação'],['equipe','Equipe'],['contato','Contato']].map(([id,label]) => (
-              <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}<ChevronRight size={18}/></a>
+            {[
+              ["escritorio", "O escritório"],
+              ["atuacao", "Atuação"],
+              ["equipe", "Equipe"],
+              ["contato", "Contato"],
+            ].map(([id, label]) => (
+              <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
+                {label}
+                <ChevronRight size={18} />
+              </a>
             ))}
           </nav>
         )}
@@ -60,106 +132,283 @@ function Index() {
           <div className="hero-image" />
           <div className="hero-shade" />
           <div className="hero-content">
-            <span className="eyebrow light">Sociedade de Advogados • Taubaté, SP</span>
-            <h1>Direito com estratégia.<br/><em>Atendimento com propósito.</em></h1>
-            <p>Soluções jurídicas personalizadas para proteger o que importa para você, sua família e sua empresa.</p>
+            <span className="eyebrow light">Sociedade de Advogados • Lorena, SP</span>
+            <h1>
+              Advocacia próxima,
+              <br />
+              <em>clara e responsável.</em>
+            </h1>
+            <p>
+              Aqui você conversa diretamente com quem vai cuidar do seu caso. Ouvimos com atenção,
+              explicamos cada etapa e buscamos o caminho mais seguro para você.
+            </p>
             <div className="hero-actions">
-              <a className="button gold" href={whatsapp} target="_blank" rel="noreferrer">Fale com um advogado <ArrowRight size={18}/></a>
-              <a className="text-link light-link" href="#atuacao">Conheça nossa atuação <ArrowDownRight size={17}/></a>
+              <a className="button gold" href={whatsapp} target="_blank" rel="noreferrer">
+                Fale com um advogado <ArrowRight size={18} />
+              </a>
+              <a className="text-link light-link" href="#atuacao">
+                Conheça nossa atuação <ArrowDownRight size={17} />
+              </a>
             </div>
-          </div>
-          <div className="hero-proof">
-            <div><strong>Ética</strong><span>em cada decisão</span></div>
-            <div><strong>Clareza</strong><span>durante todo o processo</span></div>
-            <div><strong>Estratégia</strong><span>para resultados seguros</span></div>
           </div>
         </section>
 
         <section id="escritorio" className="section about">
-          <div className="section-label"><span>01</span> O escritório</div>
+          <div className="section-label">
+            <span>01</span> O escritório
+          </div>
           <div className="about-grid">
             <div>
-              <span className="eyebrow">Nossa essência</span>
-              <h2>Excelência jurídica começa com <em>escuta e confiança.</em></h2>
+              <span className="eyebrow">Sobre nós</span>
+              <h2>
+                Antes de qualquer processo,
+                <br />
+                <em>existe uma história.</em>
+              </h2>
             </div>
             <div className="about-copy">
-              <p className="lead">Na Cruz & Soares, cada caso é tratado de forma única. Unimos experiência, atualização constante e visão estratégica para oferecer uma advocacia próxima, transparente e resolutiva.</p>
-              <p>Nossa atuação é pautada pela ética, pelo sigilo e por uma comunicação clara — para que você compreenda cada etapa e tome decisões com segurança.</p>
+              <p className="lead">
+                Sabemos que procurar um advogado costuma acontecer em um momento de dúvida ou
+                preocupação. Por isso, começamos ouvindo.
+              </p>
+              <p>
+                Na Cruz & Soares, o atendimento é feito de perto e sem juridiquês desnecessário.
+                Você entende o que está acontecendo, conhece as possibilidades e participa das
+                decisões ao longo do caminho.
+              </p>
               <div className="values">
-                {['Atendimento personalizado','Comunicação clara','Sigilo absoluto','Foco em soluções'].map(value => <span key={value}><Check size={16}/>{value}</span>)}
+                {[
+                  "Atendimento personalizado",
+                  "Comunicação clara",
+                  "Sigilo absoluto",
+                  "Foco em soluções",
+                ].map((value) => (
+                  <span key={value}>
+                    <Check size={16} />
+                    {value}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="atuacao" className="section practice">
-          <div className="section-label inverse"><span>02</span> Áreas de atuação</div>
-          <div className="section-heading inverse-heading">
-            <div><span className="eyebrow light">Conhecimento que protege</span><h2>Atuação jurídica<br/><em>completa e estratégica.</em></h2></div>
-            <p>Orientação especializada para prevenir riscos, solucionar conflitos e preservar direitos.</p>
+        <section id="atuacao" className="section practice practice-editorial">
+          <div className="section-label inverse">
+            <span>02</span> Áreas de atuação
           </div>
-          <div className="practice-grid">
-            {areas.map(({icon: Icon, number, title, text}) => (
-              <article className="practice-card" key={title}>
-                <div className="card-top"><span>{number}</span><Icon size={28}/></div>
-                <h3>{title}</h3><p>{text}</p>
-                <a href={whatsapp} target="_blank" rel="noreferrer" aria-label={`Consultar sobre ${title}`}>Consultar especialista <ArrowRight size={16}/></a>
-              </article>
-            ))}
+          <div className="practice-layout">
+            <div className="practice-intro">
+              <span className="eyebrow light">Clareza para o próximo passo</span>
+              <h2>
+                Seu momento.
+                <br />
+                Seus direitos.
+                <br />
+                <em>Nossa atenção.</em>
+              </h2>
+              <p>
+                Cada história tem suas particularidades. Encontre a área que se conecta ao seu
+                momento e conheça como podemos ajudar.
+              </p>
+              <div className="practice-guidance">
+                <Scale size={24} />
+                <span>
+                  Uma escuta atenta.
+                  <br />
+                  <strong>Um caminho construído com você.</strong>
+                </span>
+              </div>
+            </div>
+            <div className="practice-accordion">
+              {areas.map(({ icon: Icon, number, title, text }, index) => (
+                <article
+                  className={`practice-entry${activeArea === index ? " is-open" : ""}`}
+                  key={title}
+                >
+                  <h3>
+                    <button
+                      type="button"
+                      className="practice-toggle"
+                      id={`area-toggle-${number}`}
+                      aria-expanded={activeArea === index}
+                      aria-controls={`area-panel-${number}`}
+                      onClick={() => setActiveArea(activeArea === index ? null : index)}
+                    >
+                      <span className="practice-number">{number}</span>
+                      <Icon className="practice-icon" size={26} />
+                      <span className="practice-title">{title}</span>
+                      <ArrowDownRight className="practice-arrow" size={23} />
+                    </button>
+                  </h3>
+                  <div
+                    className="practice-panel"
+                    id={`area-panel-${number}`}
+                    role="region"
+                    aria-labelledby={`area-toggle-${number}`}
+                    hidden={activeArea !== index}
+                  >
+                    <p>{text}</p>
+                    <a
+                      className="practice-consult"
+                      href={`https://wa.me/551231996132?text=${encodeURIComponent(`Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta sobre ${title}. Quais dias e horários estão disponíveis?`)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Conversar sobre esta área <ArrowRight size={18} />
+                    </a>
+                  </div>
+                </article>
+              ))}
+              <p className="practice-help">
+                Não sabe por onde começar?{" "}
+                <a href={whatsapp} target="_blank" rel="noreferrer">
+                  Conte sua situação para nós <ArrowRight size={15} />
+                </a>
+              </p>
+            </div>
           </div>
         </section>
 
         <section id="equipe" className="section team">
-          <div className="section-label"><span>03</span> Nossa equipe</div>
+          <div className="section-label">
+            <span>03</span> Nossa equipe
+          </div>
           <div className="section-heading">
-            <div><span className="eyebrow">Experiência e proximidade</span><h2>Profissionais dedicados<br/>à <em>sua tranquilidade.</em></h2></div>
-            <p>Uma equipe que combina conhecimento técnico, visão humana e compromisso real com cada cliente.</p>
+            <div>
+              <span className="eyebrow">Quem vai atender você</span>
+              <h2>
+                Conhecimento técnico
+                <br />
+                <em>com conversa franca.</em>
+              </h2>
+            </div>
+            <p>
+              Uma equipe que combina conhecimento técnico, visão humana e compromisso real com cada
+              cliente.
+            </p>
           </div>
           <div className="team-grid">
             {professionals.map((person, i) => (
               <article className="person" key={person.name}>
-                <div className="person-photo"><img src={person.image} alt={person.name}/><span>0{i+1}</span></div>
-                <div className="person-info"><span>{person.role}</span><h3>{person.name}</h3><p>{person.text}</p></div>
+                <div className={`person-photo ${person.photoClass ?? ""}`}>
+                  <img src={person.image} alt={person.name} />
+                  <span>0{i + 1}</span>
+                </div>
+                <div className="person-info">
+                  <span>{person.role}</span>
+                  <h3>{person.name}</h3>
+                  {person.text && <p>{person.text}</p>}
+                </div>
               </article>
             ))}
           </div>
         </section>
 
         <section className="manifesto">
-          <Landmark size={34}/>
-          <blockquote>“Mais do que representar causas, construímos caminhos jurídicos seguros para o futuro.”</blockquote>
+          <Landmark size={34} />
+          <blockquote>
+            “Mais do que representar causas, construímos caminhos jurídicos seguros para o futuro.”
+          </blockquote>
           <span>Cruz & Soares • Sociedade de Advogados</span>
         </section>
 
         <section id="contato" className="section contact">
           <div className="contact-copy">
-            <div className="section-label inverse"><span>04</span> Contato</div>
+            <div className="section-label inverse">
+              <span>04</span> Contato
+            </div>
             <span className="eyebrow light">Vamos conversar</span>
-            <h2>Seu caso merece<br/><em>atenção especializada.</em></h2>
-            <p>Conte brevemente o que precisa. Nossa equipe retornará para entender sua situação e orientar os próximos passos.</p>
-            <a className="button gold" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={19}/> Iniciar conversa no WhatsApp</a>
+            <h2>
+              Vamos conversar
+              <br />
+              <em>sobre a sua situação?</em>
+            </h2>
+            <p>
+              Conte brevemente o que precisa. Nossa equipe retornará para entender sua situação e
+              orientar os próximos passos.
+            </p>
+            <a className="button gold" href={whatsapp} target="_blank" rel="noreferrer">
+              <MessageCircle size={19} /> Iniciar conversa no WhatsApp
+            </a>
           </div>
           <div className="contact-card">
             <h3>Canais de atendimento</h3>
-            <a href="mailto:contato@cruzesoares.adv.br"><Mail/><span><small>E-mail</small>contato@cruzesoares.adv.br</span></a>
-            <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle/><span><small>WhatsApp</small>(12) 99109-1341</span></a>
-            <div><MapPin/><span><small>Atendimento</small>Taubaté e região • Presencial e online</span></div>
-            <div className="contact-note">Atendimento mediante agendamento prévio.</div>
+            <a href="mailto:contato@cruzesoares.adv.br">
+              <Mail />
+              <span>
+                <small>E-mail</small>contato@cruzesoares.adv.br
+              </span>
+            </a>
+            <a href={whatsapp} target="_blank" rel="noreferrer">
+              <MessageCircle />
+              <span>
+                <small>WhatsApp</small>(12) 3199-6132
+              </span>
+            </a>
+            <a className="contact-address" href={maps} target="_blank" rel="noreferrer">
+              <MapPin />
+              <span>
+                <small>Endereço</small>
+                Av. Bernardino de Campos - Centro, Lorena - SP, 12602-610, Brasil
+              </span>
+            </a>
+            <div className="contact-note">
+              Atendimento presencial e online, mediante agendamento prévio.
+            </div>
           </div>
         </section>
       </main>
 
       <footer>
         <div className="footer-main">
-          <img src="/logo-transparent.png" alt="Cruz & Soares"/>
+          <img src="/logo-transparent.png" alt="Cruz & Soares" />
           <p>Advocacia estratégica, ética e próxima para pessoas e empresas.</p>
-          <div className="social"><a href="https://instagram.com/cruzesoares.adv" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram/></a><a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail"><Mail/></a></div>
+          <div className="social">
+            <a
+              href="https://instagram.com/cruzesoares.adv"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <Instagram />
+            </a>
+            <a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail">
+              <Mail />
+            </a>
+          </div>
         </div>
-        <div className="footer-bottom"><span>© 2026 Cruz & Soares. Todos os direitos reservados.</span><span>OAB/SP 203.791 • Em conformidade com o Código de Ética da OAB.</span></div>
+        <div className="footer-bottom">
+          <span>© 2026 Cruz & Soares. Todos os direitos reservados.</span>
+          <span>Versão beta — site sujeito a alterações.</span>
+          <span>OAB/SP 203.791 • Em conformidade com o Código de Ética da OAB.</span>
+        </div>
       </footer>
 
-      <a className="whatsapp-float" href={whatsapp} target="_blank" rel="noreferrer" aria-label="Fale pelo WhatsApp"><MessageCircle/></a>
-      {cookies && <div className="cookie"><p>Usamos cookies essenciais para melhorar sua experiência, em conformidade com a LGPD.</p><button onClick={() => { localStorage.setItem('cookiesAceitos','true'); setCookies(false); }}>Entendi</button></div>}
+      <a
+        className="whatsapp-float"
+        href={whatsapp}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Fale pelo WhatsApp"
+      >
+        <MessageCircle />
+      </a>
+      {cookies && (
+        <div className="cookie">
+          <p>
+            Usamos cookies essenciais para melhorar sua experiência, em conformidade com a LGPD.
+          </p>
+          <button
+            onClick={() => {
+              localStorage.setItem("cookiesAceitos", "true");
+              setCookies(false);
+            }}
+          >
+            Entendi
+          </button>
+        </div>
+      )}
     </div>
   );
 }
