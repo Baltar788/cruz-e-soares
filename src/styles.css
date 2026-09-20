@@ -951,6 +951,12 @@ em {
   .practice-guidance {
     display: none;
   }
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .person-photo {
+    height: min(92vw, 520px);
+  }
 }
 @media (max-width: 620px) {
   .team-grid {
