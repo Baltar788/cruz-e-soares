@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -82,10 +82,7 @@ const professionals = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cookies, setCookies] = useState(false);
   const [activeArea, setActiveArea] = useState<number | null>(0);
-
-  useEffect(() => setCookies(!localStorage.getItem("cookiesAceitos")), []);
 
   return (
     <div className="site-shell">
@@ -394,21 +391,6 @@ function Index() {
       >
         <MessageCircle />
       </a>
-      {cookies && (
-        <div className="cookie">
-          <p>
-            Usamos cookies essenciais para melhorar sua experiência, em conformidade com a LGPD.
-          </p>
-          <button
-            onClick={() => {
-              localStorage.setItem("cookiesAceitos", "true");
-              setCookies(false);
-            }}
-          >
-            Entendi
-          </button>
-        </div>
-      )}
     </div>
   );
 }

@@ -527,33 +527,6 @@ em {
   z-index: 30;
   box-shadow: 0 12px 30px #0004;
 }
-.cookie {
-  position: fixed;
-  z-index: 50;
-  left: 20px;
-  bottom: 20px;
-  right: 95px;
-  max-width: 540px;
-  background: white;
-  box-shadow: 0 15px 50px #0003;
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 11px;
-}
-.cookie p {
-  margin: 0;
-  line-height: 1.5;
-}
-.cookie button {
-  border: 0;
-  border-radius: 999px;
-  background: var(--navy);
-  color: white;
-  padding: 10px 16px;
-  cursor: pointer;
-}
 @media (max-width: 900px) {
   .site-header {
     height: 76px;
@@ -711,12 +684,6 @@ em {
   }
   .footer-bottom {
     line-height: 1.5;
-  }
-  .cookie {
-    right: 20px;
-    bottom: 90px;
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
 /* Aparência anterior à reformulação geral. */
@@ -991,6 +958,11 @@ em {
   }
   .person-photo {
     height: min(125vw, 520px);
+  }
+  .person:nth-child(4) .person-photo,
+  .person:nth-child(5) .person-photo {
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
   .person-info {
     min-height: 0;
