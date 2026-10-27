@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { type MouseEvent, useState } from "react";
+import { useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -21,9 +21,8 @@ import {
 export const Route = createFileRoute("/")({ component: Index });
 
 const whatsapp = `https://wa.me/551231996132?text=${encodeURIComponent("Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta. Quais dias e horários estão disponíveis?")}`;
-const address = "Av. Bernardino de Campos, 46 - Centro";
-const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-const appleMaps = `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
+const address = "Av. Bernardino de Campos, 46 — Centro, Lorena/SP";
+const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Cruz & Soares Sociedade de Advogados, ${address}`)}`;
 
 const areas = [
   {
@@ -87,12 +86,6 @@ const professionals = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeArea, setActiveArea] = useState<number | null>(0);
-  const openAddress = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-      event.preventDefault();
-      window.location.assign(appleMaps);
-    }
-  };
 
   return (
     <div className="site-shell">
@@ -354,19 +347,18 @@ function Index() {
                 <small>WhatsApp</small>(12) 3199-6132
               </span>
             </a>
-            <a
-              className="contact-address"
-              href={maps}
-              target="_blank"
-              rel="noreferrer"
-              onClick={openAddress}
-            >
-              <MapPin />
-              <span>
-                <small>Endereço</small>
-                {address}
-              </span>
-            </a>
+            <div className="contact-location">
+              <a className="contact-address" href={maps} target="_blank" rel="noreferrer">
+                <MapPin />
+                <span>
+                  <small>Endereço</small>
+                  {address}
+                </span>
+              </a>
+              <a className="directions-link" href={maps} target="_blank" rel="noreferrer">
+                Como chegar <ArrowRight size={15} />
+              </a>
+            </div>
             <div className="contact-note">
               Atendimento presencial e online, mediante agendamento prévio.
             </div>

@@ -460,6 +460,36 @@ em {
 .contact-card > .contact-address {
   align-items: flex-start;
 }
+.contact-card > .contact-location {
+  display: block;
+  padding: 20px 0;
+}
+.contact-location .contact-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.directions-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0 36px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.directions-link:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+.directions-link svg {
+  color: currentColor;
+}
 .contact-card small {
   color: #8fa0aa;
   text-transform: uppercase;
