@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -21,8 +21,9 @@ import {
 export const Route = createFileRoute("/")({ component: Index });
 
 const whatsapp = `https://wa.me/551231996132?text=${encodeURIComponent("Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta. Quais dias e horários estão disponíveis?")}`;
-const maps =
-  "https://www.google.com/maps/search/?api=1&query=Av.+Bernardino+de+Campos%2C+Centro%2C+Lorena+-+SP%2C+12602-610%2C+Brasil";
+const address = "Av. Bernardino de Campos, 46 - Centro";
+const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+const appleMaps = `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
 
 const areas = [
   {
@@ -86,6 +87,12 @@ const professionals = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeArea, setActiveArea] = useState<number | null>(0);
+  const openAddress = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      event.preventDefault();
+      window.location.assign(appleMaps);
+    }
+  };
 
   return (
     <div className="site-shell">
@@ -347,11 +354,17 @@ function Index() {
                 <small>WhatsApp</small>(12) 3199-6132
               </span>
             </a>
-            <a className="contact-address" href={maps} target="_blank" rel="noreferrer">
+            <a
+              className="contact-address"
+              href={maps}
+              target="_blank"
+              rel="noreferrer"
+              onClick={openAddress}
+            >
               <MapPin />
               <span>
                 <small>Endereço</small>
-                Av. Bernardino de Campos - Centro, Lorena - SP, 12602-610, Brasil
+                {address}
               </span>
             </a>
             <div className="contact-note">
