@@ -56,6 +56,7 @@ const professionals = [
     name: "Dr. Gustavo",
     role: "Advogado",
     image: "/images/gustavo-800.webp",
+    oab: "OAB 203.791",
     text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade.",
   },
   {
