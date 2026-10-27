@@ -954,6 +954,10 @@ em {
   .team-grid {
     grid-template-columns: 1fr;
   }
+  .team-grid .person {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
   .person-photo {
     height: min(92vw, 520px);
   }
