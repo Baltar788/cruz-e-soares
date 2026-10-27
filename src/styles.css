@@ -775,6 +775,14 @@ em {
   font-size: clamp(29px, 2.4vw, 36px);
   line-height: 1;
 }
+.person-info small {
+  display: block;
+  margin: -5px 0 16px;
+  color: #9b7c44;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
 .person-info p {
   margin: 0;
   color: #68737a;
@@ -957,6 +965,7 @@ em {
   .team-grid .person {
     grid-column: 1 / -1;
     width: 100%;
+    min-width: 0;
   }
   .person-photo {
     height: min(92vw, 520px);

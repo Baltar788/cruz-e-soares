@@ -62,6 +62,7 @@ const professionals = [
     name: "Dra. Denise",
     role: "Advogada",
     image: "/images/denise-800.webp",
+    oab: "OAB 148.299",
     text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
   },
   {
@@ -74,7 +75,8 @@ const professionals = [
   {
     name: "Dr. Rafael",
     role: "Advogado",
-    image: "/images/rafael-800.webp",
+    image: "/images/rafael-800.png",
+    oab: "OAB 511.622",
     text: "Atuação cuidadosa, comunicação transparente e dedicação na construção de soluções jurídicas eficazes.",
   },
   { name: "Dr. João", role: "Estagiário", image: "/images/bape-v2-800.webp", text: "" },
@@ -295,6 +297,7 @@ function Index() {
                 <div className="person-info">
                   <span>{person.role}</span>
                   <h3>{person.name}</h3>
+                  {person.oab && <small>{person.oab}</small>}
                   {person.text && <p>{person.text}</p>}
                 </div>
               </article>
