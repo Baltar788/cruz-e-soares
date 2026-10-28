@@ -21,8 +21,20 @@ import {
 export const Route = createFileRoute("/")({ component: Index });
 
 const whatsapp = `https://wa.me/551231996132?text=${encodeURIComponent("Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta. Quais dias e horários estão disponíveis?")}`;
-const address = "Av. Bernardino de Campos, 46 — Centro, Lorena/SP";
-const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Cruz & Soares Sociedade de Advogados, ${address}`)}`;
+const offices = [
+  {
+    label: "Escritório 1",
+    address: "Avenida Conselheiro Rodrigues Alves, 329 — Centro, Cachoeira Paulista/SP — CEP 12630-041",
+    googleMaps: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Avenida Conselheiro Rodrigues Alves, 329, Centro, Cachoeira Paulista, SP, 12630-041")}`,
+    appleMaps: `https://maps.apple.com/?q=${encodeURIComponent("Avenida Conselheiro Rodrigues Alves, 329, Centro, Cachoeira Paulista, SP, 12630-041")}`,
+  },
+  {
+    label: "Escritório 2",
+    address: "Av. Bernardino de Campos, 46 — Centro, Lorena/SP",
+    googleMaps: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Av. Bernardino de Campos, 46, Centro, Lorena, SP")}`,
+    appleMaps: `https://maps.apple.com/?q=${encodeURIComponent("Av. Bernardino de Campos, 46, Centro, Lorena, SP")}`,
+  },
+];
 
 const areas = [
   {
@@ -343,18 +355,25 @@ function Index() {
                 <small>WhatsApp</small>(12) 3199-6132
               </span>
             </a>
-            <div className="contact-location">
-              <a className="contact-address" href={maps} target="_blank" rel="noreferrer">
-                <MapPin />
-                <span>
-                  <small>Endereço</small>
-                  {address}
-                </span>
-              </a>
-              <a className="directions-link" href={maps} target="_blank" rel="noreferrer">
-                Como chegar <ArrowRight size={15} />
-              </a>
-            </div>
+            {offices.map((office) => (
+              <div className="contact-location" key={office.label}>
+                <div className="contact-address">
+                  <MapPin />
+                  <span>
+                    <small>{office.label}</small>
+                    {office.address}
+                  </span>
+                </div>
+                <div className="directions-links">
+                  <a className="directions-link" href={office.googleMaps} target="_blank" rel="noreferrer">
+                    Google Maps <ArrowRight size={15} />
+                  </a>
+                  <a className="directions-link" href={office.appleMaps} target="_blank" rel="noreferrer">
+                    Apple Maps <ArrowRight size={15} />
+                  </a>
+                </div>
+              </div>
+            ))}
             <div className="contact-note">
               Atendimento presencial e online, mediante agendamento prévio.
             </div>
