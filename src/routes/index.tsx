@@ -8,6 +8,7 @@ import {
   ChevronRight,
   Instagram,
   Landmark,
+  Linkedin,
   Mail,
   MapPin,
   Menu,
@@ -449,6 +450,14 @@ function Index() {
               <a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail">
                 <Mail />
               </a>
+              <button
+                className="social-button"
+                type="button"
+                disabled
+                aria-label="LinkedIn em breve"
+              >
+                <Linkedin />
+              </button>
             </div>
           </div>
         </div>
