@@ -36,6 +36,13 @@ const offices = [
   },
 ];
 
+const isAppleDevice = () => {
+  if (typeof navigator === "undefined") return false;
+
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+};
+
 const areas = [
   {
     icon: Scale,
@@ -364,14 +371,20 @@ function Index() {
                     {office.address}
                   </span>
                 </div>
-                <div className="directions-links">
-                  <a className="directions-link" href={office.googleMaps} target="_blank" rel="noreferrer">
-                    Google Maps <ArrowRight size={15} />
-                  </a>
-                  <a className="directions-link" href={office.appleMaps} target="_blank" rel="noreferrer">
-                    Apple Maps <ArrowRight size={15} />
-                  </a>
-                </div>
+                <a
+                  className="directions-link"
+                  href={office.googleMaps}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(event) => {
+                    if (isAppleDevice()) {
+                      event.preventDefault();
+                      window.location.assign(office.appleMaps);
+                    }
+                  }}
+                >
+                  Como chegar <ArrowRight size={15} />
+                </a>
               </div>
             ))}
             <div className="contact-note">
