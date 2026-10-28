@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -102,10 +102,36 @@ const professionals = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeArea, setActiveArea] = useState<number | null>(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 24);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="site-shell">
-      <header className="site-header">
+      <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
         <a href="#inicio" className="brand" aria-label="Cruz e Soares — início">
           <img src="/logo-transparent.png" alt="Cruz & Soares Sociedade de Advogados" />
         </a>
@@ -169,7 +195,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="escritorio" className="section about">
+        <section id="escritorio" className="section about reveal">
           <div className="section-label">
             <span>01</span> O escritório
           </div>
@@ -209,7 +235,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="atuacao" className="section practice practice-editorial">
+        <section id="atuacao" className="section practice practice-editorial reveal">
           <div className="section-label inverse">
             <span>02</span> Áreas de atuação
           </div>
@@ -286,7 +312,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="equipe" className="section team">
+        <section id="equipe" className="section team reveal">
           <div className="section-label">
             <span>03</span> Nossa equipe
           </div>
@@ -308,7 +334,7 @@ function Index() {
             {professionals.map((person, i) => (
               <article className="person" key={person.name}>
                 <div className={`person-photo ${person.photoClass ?? ""}`}>
-                  <img src={person.image} alt={person.name} />
+                  <img src={person.image} alt={person.name} loading="lazy" decoding="async" />
                   <span>0{i + 1}</span>
                 </div>
                 <div className="person-info">
@@ -321,7 +347,7 @@ function Index() {
           </div>
         </section>
 
-        <section className="manifesto">
+        <section className="manifesto reveal">
           <Landmark size={34} />
           <blockquote>
             “Mais do que representar causas, construímos caminhos jurídicos seguros para o futuro.”
@@ -329,7 +355,7 @@ function Index() {
           <span>Cruz & Soares • Sociedade de Advogados</span>
         </section>
 
-        <section id="contato" className="section contact">
+        <section id="contato" className="section contact reveal">
           <div className="contact-copy">
             <div className="section-label inverse">
               <span>04</span> Contato
@@ -396,20 +422,36 @@ function Index() {
 
       <footer>
         <div className="footer-main">
-          <img src="/logo-transparent.png" alt="Cruz & Soares" />
-          <p>Advocacia estratégica, ética e próxima para pessoas e empresas.</p>
-          <div className="social">
-            <a
-              href="https://instagram.com/cruzesoares.adv"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              <Instagram />
-            </a>
-            <a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail">
-              <Mail />
-            </a>
+          <div className="footer-brand">
+            <img src="/logo-transparent.png" alt="Cruz & Soares" />
+            <p>Advocacia estratégica, ética e próxima para pessoas e empresas.</p>
+          </div>
+          <div className="footer-column">
+            <h3>Contato</h3>
+            <a href="mailto:contato@cruzesoares.adv.br">contato@cruzesoares.adv.br</a>
+            <a href={whatsapp} target="_blank" rel="noreferrer">(12) 3199-6132</a>
+          </div>
+          <div className="footer-column">
+            <h3>Links úteis</h3>
+            <a href="#escritorio">O escritório</a>
+            <a href="#atuacao">Atuação</a>
+            <a href="#contato">Contato</a>
+          </div>
+          <div className="footer-column footer-social">
+            <h3>Redes sociais</h3>
+            <div className="social">
+              <a
+                href="https://instagram.com/cruzesoares.adv"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram />
+              </a>
+              <a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail">
+                <Mail />
+              </a>
+            </div>
           </div>
         </div>
         <div className="footer-bottom">
