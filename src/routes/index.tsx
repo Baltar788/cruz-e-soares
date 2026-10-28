@@ -56,14 +56,12 @@ const professionals = [
     name: "Dr. Gustavo",
     role: "Advogado",
     image: "/images/gustavo-800.webp",
-    oab: "OAB/SP 203.791",
     text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade.",
   },
   {
     name: "Dra. Denise",
     role: "Advogada",
     image: "/images/denise-800.webp",
-    oab: "OAB/SP 148.299",
     text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
   },
   {
@@ -77,7 +75,6 @@ const professionals = [
     name: "Dr. Rafael",
     role: "Advogado",
     image: "/images/rafael-800.png",
-    oab: "OAB/SP 511.622",
     text: "Atuação cuidadosa, comunicação transparente e dedicação na construção de soluções jurídicas eficazes.",
   },
   { name: "Dr. João", role: "Estagiário", image: "/images/bape-v2-800.webp", text: "" },
@@ -298,7 +295,6 @@ function Index() {
                 <div className="person-info">
                   <span>{person.role}</span>
                   <h3>{person.name}</h3>
-                  {person.oab && <small>{person.oab}</small>}
                   {person.text && <p>{person.text}</p>}
                 </div>
               </article>
@@ -387,7 +383,6 @@ function Index() {
         <div className="footer-bottom">
           <span>© 2026 Cruz & Soares. Todos os direitos reservados.</span>
           <span>Versão beta — site sujeito a alterações.</span>
-          <span>OAB/SP 203.791 • Em conformidade com o Código de Ética da OAB.</span>
         </div>
       </footer>
 
