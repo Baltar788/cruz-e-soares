@@ -39,8 +39,10 @@ const offices = [
 const isAppleDevice = () => {
   if (typeof navigator === "undefined") return false;
 
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
 };
 
 const areas = [
@@ -429,13 +431,9 @@ function Index() {
           <div className="footer-column">
             <h3>Contato</h3>
             <a href="mailto:contato@cruzesoares.adv.br">contato@cruzesoares.adv.br</a>
-            <a href={whatsapp} target="_blank" rel="noreferrer">(12) 3199-6132</a>
-          </div>
-          <div className="footer-column">
-            <h3>Links úteis</h3>
-            <a href="#escritorio">O escritório</a>
-            <a href="#atuacao">Atuação</a>
-            <a href="#contato">Contato</a>
+            <a href={whatsapp} target="_blank" rel="noreferrer">
+              (12) 3199-6132
+            </a>
           </div>
           <div className="footer-column footer-social">
             <h3>Redes sociais</h3>
@@ -456,7 +454,6 @@ function Index() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 Cruz & Soares. Todos os direitos reservados.</span>
-          <span>Versão beta — site sujeito a alterações.</span>
         </div>
       </footer>
 
