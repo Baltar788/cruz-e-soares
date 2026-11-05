@@ -22,6 +22,7 @@ import {
 export const Route = createFileRoute("/")({ component: Index });
 
 const whatsapp = `https://wa.me/551231996132?text=${encodeURIComponent("Olá! Vim pelo site da Cruz & Soares e gostaria de agendar um horário para uma consulta. Quais dias e horários estão disponíveis?")}`;
+const emailCompose = "https://mail.google.com/mail/?view=cm&fs=1&to=contato%40cruzesoares.adv.br";
 const offices = [
   {
     label: "Escritório 1",
@@ -379,7 +380,7 @@ function Index() {
           </div>
           <div className="contact-card">
             <h3>Canais de atendimento</h3>
-            <a href="mailto:contato@cruzesoares.adv.br">
+            <a href={emailCompose} target="_blank" rel="noreferrer">
               <Mail />
               <span>
                 <small>E-mail</small>contato@cruzesoares.adv.br
@@ -431,7 +432,7 @@ function Index() {
           </div>
           <div className="footer-column">
             <h3>Contato</h3>
-            <a href="mailto:contato@cruzesoares.adv.br">contato@cruzesoares.adv.br</a>
+            <a href={emailCompose} target="_blank" rel="noreferrer">contato@cruzesoares.adv.br</a>
             <a href={whatsapp} target="_blank" rel="noreferrer">
               (12) 3199-6132
             </a>
@@ -447,7 +448,7 @@ function Index() {
               >
                 <Instagram />
               </a>
-              <a href="mailto:contato@cruzesoares.adv.br" aria-label="E-mail">
+              <a href={emailCompose} target="_blank" rel="noreferrer" aria-label="E-mail">
                 <Mail />
               </a>
               <button
