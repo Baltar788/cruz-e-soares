@@ -750,11 +750,11 @@ em {
   font-size: 27px;
 }
 .team-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 .person {
-  grid-column: span 2;
+  grid-column: auto;
   display: flex;
   min-height: 0;
   flex-direction: column;
@@ -768,12 +768,6 @@ em {
 .person:hover {
   transform: translateY(-7px);
   box-shadow: 0 26px 58px #10283b21;
-}
-.person:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-.person:nth-child(5) {
-  grid-column: 4 / span 2;
 }
 .person-photo {
   height: clamp(360px, 32vw, 470px);
@@ -969,10 +963,6 @@ em {
   .person-photo {
     height: 520px;
   }
-  .person:nth-child(4),
-  .person:nth-child(5) {
-    grid-column: auto;
-  }
 }
 @media (max-width: 900px) {
   .site-header {
@@ -1008,10 +998,6 @@ em {
     grid-template-columns: 1fr;
   }
   .person-photo {
-    height: min(125vw, 520px);
-  }
-  .person:nth-child(4) .person-photo,
-  .person:nth-child(5) .person-photo {
     height: auto;
     aspect-ratio: 3 / 4;
   }
