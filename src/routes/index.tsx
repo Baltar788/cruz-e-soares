@@ -110,7 +110,7 @@ const professionals = [
     text: "",
   },
   {
-    name: "Dr. João",
+    name: "João",
     role: "Estagiário",
     image: "/images/bape-v2-800.webp",
     text: "",
