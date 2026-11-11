@@ -76,7 +76,7 @@ const areas = [
 
 const professionals = [
   {
-    name: "Dr. Gustavo",
+    name: "Dr. Gustavo — OAB/SP 203.791",
     role: "Advogado",
     image: "/images/gustavo-800.webp",
     text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade.",
@@ -88,19 +88,24 @@ const professionals = [
     text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
   },
   {
-    name: "Dr. Renan",
+    name: "Dr. Renan — OAB/SP 559.020",
     role: "Advogado",
     image: "/images/renan-v2-800.webp",
     photoClass: "person-photo-renan",
     text: "Compromisso, atenção e atuação responsável na busca por soluções jurídicas seguras e eficientes.",
   },
   {
-    name: "Dr. Rafael",
+    name: "Dr. Rafael — OAB/SP 511.622",
     role: "Advogado",
     image: "/images/rafael-800.png",
     text: "Atuação cuidadosa, comunicação transparente e dedicação na construção de soluções jurídicas eficazes.",
   },
-  { name: "Dr. João", role: "Estagiário", image: "/images/bape-v2-800.webp", text: "" },
+  {
+    name: "João Barbosa",
+    role: "Auxiliar jurídico",
+    image: "/images/joao-barbosa.png",
+    text: "",
+  },
 ];
 
 function Index() {
