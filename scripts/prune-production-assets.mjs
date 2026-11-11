@@ -15,6 +15,7 @@ const retainedFiles = new Set([
   "images/renan-v2-800.webp",
   "images/rafael-800.png",
   "images/joao-barbosa.png",
+  "images/bape-v2-800.webp",
 ]);
 
 async function walk(directory) {

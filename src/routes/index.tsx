@@ -109,6 +109,12 @@ const professionals = [
     image: "/images/joao-barbosa.png",
     text: "",
   },
+  {
+    name: "Dr. João",
+    role: "Estagiário",
+    image: "/images/bape-v2-800.webp",
+    text: "",
+  },
 ];
 
 function Index() {
