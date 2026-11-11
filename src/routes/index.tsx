@@ -111,7 +111,7 @@ const professionals = [
   },
   {
     name: "João",
-    role: "Estagiário",
+    role: "Auxiliar jurídico",
     image: "/images/bape-v2-800.webp",
     text: "",
   },
