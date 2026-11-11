@@ -76,7 +76,8 @@ const areas = [
 
 const professionals = [
   {
-    name: "Dr. Gustavo — OAB/SP 203.791",
+    name: "Dr. Gustavo",
+    oab: "OAB/SP 203.791",
     role: "Advogado",
     image: "/images/gustavo-800.webp",
     text: "Atuação estratégica, técnica e próxima para conduzir cada demanda com clareza e responsabilidade.",
@@ -88,14 +89,16 @@ const professionals = [
     text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
   },
   {
-    name: "Dr. Renan — OAB/SP 559.020",
+    name: "Dr. Renan",
+    oab: "OAB/SP 559.020",
     role: "Advogado",
     image: "/images/renan-v2-800.webp",
     photoClass: "person-photo-renan",
     text: "Compromisso, atenção e atuação responsável na busca por soluções jurídicas seguras e eficientes.",
   },
   {
-    name: "Dr. Rafael — OAB/SP 511.622",
+    name: "Dr. Rafael",
+    oab: "OAB/SP 511.622",
     role: "Advogado",
     image: "/images/rafael-800.png",
     text: "Atuação cuidadosa, comunicação transparente e dedicação na construção de soluções jurídicas eficazes.",
@@ -349,6 +352,7 @@ function Index() {
                 <div className="person-info">
                   <span>{person.role}</span>
                   <h3>{person.name}</h3>
+                  {person.oab && <small>{person.oab}</small>}
                   {person.text && <p>{person.text}</p>}
                 </div>
               </article>
