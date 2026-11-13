@@ -84,6 +84,7 @@ const professionals = [
   },
   {
     name: "Dra. Denise",
+    oab: "OAB/SP 148.299",
     role: "Advogada",
     image: "/images/denise-800.webp",
     text: "Experiência, escuta atenta e dedicação na construção de soluções jurídicas consistentes e personalizadas.",
